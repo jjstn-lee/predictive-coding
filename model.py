@@ -40,7 +40,7 @@ x_seq = jnp.asarray([[1., 2., 3., 4., 5.]], dtype=jnp.float32)
 model.reset()
 for ts in range(x_seq.shape[1]):
     x_t = jnp.expand_dims(x_seq[0, ts], axis=0)  ## get data at time ts
-    model.clamp_data(x_t)
+    model.clamp(x_t)
     model.advance(t=ts * 1., dt=1.)
     ## naively extract simple statistics at time ts and print them to I/O
     a_out = a.zF
