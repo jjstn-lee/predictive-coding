@@ -22,10 +22,10 @@ with Context("model") as model:
     b.j << Wab.outputs
 
     ## configure desired commands for simulation object
-    reset_process = (JaxProcess() >> a.reset >> Wab.reset >> b.reset)
+    reset_process = (JaxProcess("reset_process") >> a.reset >> Wab.reset >> b.reset)
     model.wrap_and_add_command(jit(reset_process.pure), name="reset")
     advance_process = (
-        JaxProcess() >> a.advance_state >> Wab.advance_state >> b.advance_state
+        JaxProcess("advance_process") >> a.advance_state >> Wab.advance_state >> b.advance_state
     )
     model.wrap_and_add_command(jit(advance_process.pure), name="advance")
 
